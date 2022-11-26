@@ -28,7 +28,7 @@ with col1:
     for gotchis in IDS[:5]:
             render_svg(contract.caller.getAavegotchiSvg(gotchis)
 with col2:
-        for gotchis in IDS[5:]:
+    for gotchis in IDS[5:]:
             render_svg(contract.caller.getAavegotchiSvg(gotchis)
 
 
