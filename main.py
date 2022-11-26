@@ -1,6 +1,6 @@
 import streamlit as st
 from web3 import Web3
-import cairo
+
 from ABI import *
 import json
 
