@@ -26,10 +26,10 @@ IDS = (contract3.caller.tokenIdsOfOwner(user_address))
 col1, col2 = st.columns(2)
 with col1:
     for gotchis in IDS[:5]:
-            render_svg(gotchis)
+            render_svg(contract.caller.getAavegotchiSvg(gotchis)
     with col2:
         for gotchis in IDS[5:]:
-            render_svg(gotchis)
+            render_svg(contract.caller.getAavegotchiSvg(gotchis)
 
 
 #except:
