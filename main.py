@@ -22,10 +22,10 @@ contract3 = web3.eth.contract(address=address, abi=abi3)
 
 user_address = st.text_input('Input Address', placeholder='0x...')
 #try:
-    IDS = (contract3.caller.tokenIdsOfOwner(user_address))
-    col1, col2 = st.columns(2)
-    with col1:
-        for gotchis in IDS[:5]:
+IDS = (contract3.caller.tokenIdsOfOwner(user_address))
+col1, col2 = st.columns(2)
+with col1:
+    for gotchis in IDS[:5]:
             render_svg(gotchis)
     with col2:
         for gotchis in IDS[5:]:
