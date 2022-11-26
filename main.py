@@ -1,6 +1,6 @@
 import streamlit as st
 from web3 import Web3
-
+import base64
 from ABI import *
 import json
 
@@ -10,16 +10,11 @@ address = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
 contract = web3.eth.contract(address=address, abi=abi)
 
 
-
-def render_image(svg):
-    ratio = svg.props.em / svg.props.dpi_x
-    svg.set_dpi(160 / ratio)
-
-    dim = svg.get_dimensions()
-    # create the cairo context
-    surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, dim.width, dim.height)
-    context = cairo.Context(surface)
-    svg.render_cairo(context)
+def render_svg(svg):
+    """Renders the given svg string."""
+    b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
+    html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
+    st.write(html, unsafe_allow_html=True)
 
 
 contract2 = web3.eth.contract(address=address, abi=abi2)
@@ -31,10 +26,10 @@ try:
     col1, col2 = st.columns(2)
     with col1:
         for gotchis in IDS[:5]:
-            st.image(contract.caller.getAavegotchiSvg(gotchis))
+            render_svg(gotchis)
     with col2:
         for gotchis in IDS[5:]:
-            st.image(contract.caller.getAavegotchiSvg(gotchis))
+            render_svg(gotchis)
 
 
 except:
