@@ -21,14 +21,17 @@ contract2 = web3.eth.contract(address=address, abi=abi2)
 contract3 = web3.eth.contract(address=address, abi=abi3)
 
 user_address = st.text_input('Input Address', placeholder='0x...')
-#try:
-IDS = (contract3.caller.tokenIdsOfOwner(user_address))
-col1, col2 = st.columns(2)
-with col1:
-    for gotchis in IDS:
-            render_svg(contract.caller.getAavegotchiSvg(gotchis)
+try:
+    IDS = (contract3.caller.tokenIdsOfOwner(user_address))
+    col1, col2 = st.columns(2)
+    with col1:
+        for gotchis in IDS[:5]:
+            st.image(contract.caller.getAavegotchiSvg(gotchis))
+    with col2:
+        for gotchis in IDS[5:]:
+            st.image(contract.caller.getAavegotchiSvg(gotchis))
 
 
-#except:
- #   st.warning('Insert valid address')
+except:
+    st.warning('Insert valid address')
 
