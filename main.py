@@ -26,10 +26,10 @@ try:
     col1, col2 = st.columns(2)
     with col1:
         for gotchis in IDS[:5]:
-            st.image(contract.caller.getAavegotchiSvg(gotchis))
+            st.write(contract.caller.getAavegotchiSvg(gotchis),unsafe_allow_html=True)
     with col2:
         for gotchis in IDS[5:]:
-            st.image(contract.caller.getAavegotchiSvg(gotchis))
+            st.write(contract.caller.getAavegotchiSvg(gotchis),unsafe_allow_html=True)
 
 
 except:
