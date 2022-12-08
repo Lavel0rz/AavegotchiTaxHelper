@@ -10,7 +10,8 @@ df_merged = pd.read_csv('TestingGOTCHIS.csv')
 df_ghst = pd.read_csv('GHST.csv')
 web3 = Web3(Web3.HTTPProvider(st.secrets['api']))
 address = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
-
+df_merged['Buyer'] = df_merged['Buyer'].apply(lambda x: x.lower())
+df_merged['Seller'] = df_merged['Seller'].apply(lambda x: x.lower())
 contract = web3.eth.contract(address=address, abi=abi)
 
 
