@@ -39,11 +39,11 @@ if Gotchid!= None :
     Cost_dollar = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Price'].values[0])
     date = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-    st.markdown(f'BUY PRICE {cost_ghst}$GHST,({round(Cost_dollar, 2)}$)   \n Date of purchase: {date}')
+    st.markdown(f'BUY PRICE {round(cost_ghst),2}$GHST,{round(Cost_dollar, 2}$)   \n Date of purchase: {date}')
     try:
         sell_ghst = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]
         sell_dollar = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Price'].values[0])
         sell_date = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-        st.markdown(f'SELL PRICE {sell_ghst}$GHST,({round(sell_dollar, 2)}$)  \n Date of purchase: {sell_date}')
+        st.markdown(f'SELL PRICE {round(sell_ghst),2}$GHST,{round(sell_dollar, 2}$)  \n Date of purchase: {sell_date}')
     except:st.warning('No sells found for this GotchiID!')
