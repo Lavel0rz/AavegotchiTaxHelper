@@ -36,11 +36,13 @@ Gotchid = st.selectbox('Select a Gotcher ID',(ls_IDS))
 
 
 if Gotchid!= None :
-    cost_ghst= df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]
-    Cost_dollar = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Price'].values[0])
-    date = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Date'].values[0]
+    try:
+        cost_ghst= df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]
+        Cost_dollar = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Price'].values[0])
+        date = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-    st.markdown(f'BUY PRICE {round(cost_ghst,2)}GHST, {round(Cost_dollar, 2)}($) \n Purchase Day: {date}')
+        st.markdown(f'BUY PRICE {round(cost_ghst,2)}GHST, {round(Cost_dollar, 2)}($) \n Purchase Day: {date}')
+    except:st.warning('No buys found for this GotchiID!)
     try:
         sell_ghst = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]
         sell_dollar = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Price'].values[0])
