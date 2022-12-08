@@ -5,7 +5,7 @@ from ABI import *
 import json
 import pandas as pd
 import numpy as np
-wear_df = pd.read_csv('TESTINGWEAR.csv')
+wear_df = pd.read_csv('TestngGWEAR.csv')
 df_merged = pd.read_csv('TestingGOTCHIS.csv')
 df_ghst = pd.read_csv('GHST.csv')
 web3 = Web3(Web3.HTTPProvider(st.secrets['api']))
