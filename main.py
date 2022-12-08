@@ -23,8 +23,10 @@ def render_svg(svg):
 
 contract2 = web3.eth.contract(address=address, abi=abi2)
 contract3 = web3.eth.contract(address=address, abi=abi3)
-
-user_address = st.text_input('Input Address', placeholder='0x...').lower()
+try:
+    user_address = st.text_input('Input Address', placeholder='0x...').lower()
+except:
+    st.warning('Input a valid Polygon Address')
 ls_IDS = list(df_merged[df_merged['Buyer']==user_address.lower()]['ID'].values)
 
 
