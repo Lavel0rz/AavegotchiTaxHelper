@@ -38,10 +38,10 @@ if Gotchid != None:
     Cost = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Price'].values[0])
     date = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-    st.markdown(f'BUY PRICE {round(Cost, 2)}$   \n Date of purchase: {date}')
+    st.markdown(f'BUY PRICE {round(Cost, 2)}$   \n Purchase Day: {date}')
     try:
         sell = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Price'].values[0])
         sell_date = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-        st.markdown(f'SELL PRICE {round(sell, 2)}$   \n Date of purchase: {sell_date}')
+        st.markdown(f'SELL PRICE {round(sell, 2)}$   \n Sell Day: {sell_date}')
     except:st.warning('No sells found for this GotchiID!')
