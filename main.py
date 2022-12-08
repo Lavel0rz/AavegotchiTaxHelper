@@ -45,5 +45,5 @@ if Gotchid!= None :
         sell_dollar = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Price'].values[0])
         sell_date = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-        st.markdown(f'SELL PRICE {round(sell_ghst,2)}$GHST,{round(sell_dollar, 2}$)  \n Date of purchase: {sell_date}')
+        st.markdown(f'SELL PRICE {round(sell_ghst,2)}$GHST,{round(sell_dollar, 2)}$)  \n Date of purchase: {sell_date}')
     except:st.warning('No sells found for this GotchiID!')
