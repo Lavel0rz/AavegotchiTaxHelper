@@ -28,7 +28,7 @@ try:
     user_address = st.text_input('Input Address', placeholder='0x...').lower()
 except:
     st.warning('Input a valid Polygon Address')
-ls_IDS = list(df_merged[df_merged['Buyer']==user_address.lower()]['ID'].values)
+ls_IDS = list(df_merged[df_merged['Seller']==user_address.lower()]['ID'].values)
 
 
 
