@@ -41,12 +41,43 @@ if Gotchid!= None :
         Cost_dollar = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Price'].values[0])
         date = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-        st.markdown(f'BUY PRICE {round(cost_ghst,2)}GHST, {round(Cost_dollar, 2)}($) \n Purchase Day: {date}')
+        st.markdown(f'Gotchi Buy Price {round(cost_ghst,2)}GHST, {round(Cost_dollar, 2)}($) \n Purchase Day: {date}')
     except:st.warning('No buys found for this GotchiID!')
     try:
         sell_ghst = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]
         sell_dollar = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['precio'].values[0]*(df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Price'].values[0])
         sell_date = df_merged[df_merged['Seller']==user_address][df_merged[df_merged['Seller']==user_address]['ID']==Gotchid]['Date'].values[0]
 
-        st.markdown(f'SELL PRICE {round(sell_ghst,2)}GHST, {round(sell_dollar, 2)}($) \n Sell Day: {sell_date}')
+        st.markdown(f'Gotchi sell price {round(sell_ghst,2)}GHST, {round(sell_dollar, 2)}($) \n Sell Day: {sell_date}')
     except:st.warning('No sells found for this GotchiID!')
+try:
+    gotchi_wears = df_merged[df_merged['Buyer']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][df_merged[df_merged['Buyer']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['ID']==Gotchid]['Wearables']
+    gotchi_wears = gotchi_wears.iloc[0]
+
+
+    total = 0
+    total2 = 0
+    wear_d ={}
+except:st.warning('No Wearable sales found for this gotchi')
+for ids in gotchi_wears:
+
+    try:
+        sell_date = wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['Date'].values[0]
+        wear_sell = wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['precio'].values[0]
+        wear_sell_usd = wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['precio'].values[0]*wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['Price'].values[0]
+        wear_d[ids] = [wear_sell,round(wear_sell_usd,2),sell_date]
+        total += wear_sell
+        total2 += wear_sell_usd
+    except:''
+
+st.title('Found Wearable sales')
+try:
+    for k,v in wear_d.items():
+        graph = graphviz.Digraph()
+        graph.edge(wear_id[wear_id['ID']==k]['Name'].values[0],str(v[0])+'$GHST')
+        graph.edge(wear_id[wear_id['ID']==k]['Name'].values[0],str(v[1])+'$USD')
+        graph.edge(wear_id[wear_id['ID']==k]['Name'].values[0],str(v[2]))
+        st.graphviz_chart(graph)
+
+except: st.warning('Try another gotchi ID')
+
