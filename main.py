@@ -78,6 +78,6 @@ try:
         graph.edge(wear_id[wear_id['ID']==k]['Name'].values[0],str(v[1])+'$USD')
         graph.edge(wear_id[wear_id['ID']==k]['Name'].values[0],str(v[2]))
         st.graphviz_chart(graph)
-    st.write('Total Profit/Loss on Gotchi : ',((sell_ghst+total)-cost_ghst),'$GHST',round(((sell_dollar+total2)-Cost_dollar),2),'USD')
+    st.write('Total Profit/Loss on Gotchi : ',round(((sell_ghst+total)-cost_ghst),2),'$GHST',round(((sell_dollar+total2)-Cost_dollar),2),'USD')
 
 except: st.warning('Try another gotchi ID')
