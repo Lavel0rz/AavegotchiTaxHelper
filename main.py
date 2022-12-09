@@ -10,8 +10,8 @@ df_merged['Wearables'] = df_merged['Wearables'].apply(lambda x : ast.literal_eva
 df_ghst = pd.read_csv('GHST.csv')
 wear_id = pd.read_csv('WearID.csv')
 import graphviz
-st.title('This app will try to track your Aavegotchi purchases and sells')
-st.subheader('Only works for single addresses, USD prices represent daily mean USD price of GHST')
+st.title('Gotchi sells Tracker')
+st.subheader('Only works for single addresses, USD prices are calculated daily mean USD price of GHST on the sell day')
 
 
 web3 = Web3(Web3.HTTPProvider(st.secrets['api']))
