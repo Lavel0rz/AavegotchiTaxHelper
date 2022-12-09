@@ -1,28 +1,25 @@
 import streamlit as st
 from web3 import Web3
-import base64
-from ABI import *
-import json
 import pandas as pd
-import numpy as np
 import ast
+
+from ABI import *
 wear_df = pd.read_csv('TestingWEAR.csv')
 df_merged = pd.read_csv('RealWear.csv')
 df_merged['Wearables'] = df_merged['Wearables'].apply(lambda x : ast.literal_eval(x))
 df_ghst = pd.read_csv('GHST.csv')
 wear_id = pd.read_csv('WearID.csv')
+import graphviz
+
+
+
 web3 = Web3(Web3.HTTPProvider(st.secrets['api']))
 address = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
-df_merged['Buyer'] = df_merged['Buyer'].apply(lambda x: x.lower())
-df_merged['Seller'] = df_merged['Seller'].apply(lambda x: x.lower())
+
 contract = web3.eth.contract(address=address, abi=abi)
 
 
-def render_svg(svg):
-    """Renders the given svg string."""
-    b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
-    html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
-    st.write(html, unsafe_allow_html=True)
+
 
 
 contract2 = web3.eth.contract(address=address, abi=abi2)
@@ -83,4 +80,3 @@ try:
         st.graphviz_chart(graph)
 
 except: st.warning('Try another gotchi ID')
-
