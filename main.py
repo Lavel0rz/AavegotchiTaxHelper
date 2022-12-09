@@ -137,6 +137,7 @@ try:
     else:
         for k, v in wear_d.items():
             graph = graphviz.Digraph()
+            graph.attr(rankdir="LR", size="8,5")
             graph.edge(wear_id[wear_id['ID'] == k]['Name'].values[0], str(v[0]) + '$GHST')
             graph.edge(wear_id[wear_id['ID'] == k]['Name'].values[0], str(v[1]) + '$USD')
             graph.edge(wear_id[wear_id['ID'] == k]['Name'].values[0], str(v[2]))
