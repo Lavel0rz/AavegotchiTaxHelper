@@ -51,7 +51,7 @@ if Gotchid!= None :
         st.markdown(f'Gotchi sell price {round(sell_ghst,2)}GHST, {round(sell_dollar, 2)}($) \n Sell Day: {sell_date}')
     except:st.warning('No sells found for this GotchiID!')
 try:
-    gotchi_wears = df_merged[df_merged['Buyer']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][df_merged[df_merged['Buyer']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['ID']==Gotchid]['Wearables']
+    gotchi_wears = df_merged[df_merged['Buyer']==user_address][df_merged[df_merged['Buyer']==user_address]['ID']==Gotchid]['Wearables']
     gotchi_wears = gotchi_wears.iloc[0]
 
 
@@ -62,9 +62,9 @@ except:st.warning('No Wearable sales found for this gotchi')
 for ids in gotchi_wears:
 
     try:
-        sell_date = wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['Date'].values[0]
-        wear_sell = wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['precio'].values[0]
-        wear_sell_usd = wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['precio'].values[0]*wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()][wear_df[wear_df['Seller']=='0x39292E0157EF646cc9EA65dc48F8F91Cae009EAe'.lower()]['WearID']==ids]['Price'].values[0]
+        sell_date = wear_df[wear_df['Seller']==user_address.lower()][wear_df[wear_df['Seller']==user_address]['WearID']==ids]['Date'].values[0]
+        wear_sell = wear_df[wear_df['Seller']==user_address][wear_df[wear_df['Seller']==user_address]['WearID']==ids]['precio'].values[0]
+        wear_sell_usd = wear_df[wear_df['Seller']==user_address][wear_df[wear_df['Seller']==user_address]['WearID']==ids]['precio'].values[0]*wear_df[wear_df['Seller']==user_address][wear_df[wear_df['Seller']==user_address]['WearID']==ids]['Price'].values[0]
         wear_d[ids] = [wear_sell,round(wear_sell_usd,2),sell_date]
         total += wear_sell
         total2 += wear_sell_usd
