@@ -11,7 +11,7 @@ df_ghst = pd.read_csv('GHST.csv')
 wear_id = pd.read_csv('WearID.csv')
 import graphviz
 st.title('Gotchi sells Tracker')
-st.subheader('Only works for single addresses, USD prices are calculated daily mean USD price of GHST on the sell day')
+st.subheader('Only works for single addresses, USD prices are calculated with daily mean USD price of GHST on the sell day')
 
 
 web3 = Web3(Web3.HTTPProvider(st.secrets['api']))
