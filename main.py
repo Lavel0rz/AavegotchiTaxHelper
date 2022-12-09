@@ -5,6 +5,7 @@ from ABI import *
 import json
 import pandas as pd
 import numpy as np
+import ast
 wear_df = pd.read_csv('TestingWEAR.csv')
 df_merged = pd.read_csv('RealWear.csv')
 df_merged['Wearables'] = df_merged['Wearables'].apply(lambda x : ast.literal_eval(x))
