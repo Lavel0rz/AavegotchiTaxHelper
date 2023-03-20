@@ -7,3 +7,6 @@ Example input usage:
 - Select a Gotcher ID: 9748
 
 
+![Gotchiball game](lolfail.png)
+
+Calculates Profit/Loss from Aavegotchi purchase and sale taking into account wearable related sales if it's found in the given address.
